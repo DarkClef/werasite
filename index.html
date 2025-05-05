@@ -454,38 +454,40 @@
             }
 
             nav {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 80px);
-                background-color: var(--secondary-color);
-                padding: 20px;
-                transition: 0.3s;
-                z-index: 999;
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 80px);
+            background-color: var(--secondary-color);
+            padding: 20px;
+            transition: 0.3s;
+            z-index: 999;
+            overflow-y: auto; /* uzun menüler için kaydırma çubuğu ekler */
             }
-
+        
             nav.active {
                 left: 0;
             }
-
+        
             nav ul {
                 flex-direction: column;
             }
-
+        
             nav ul li {
                 margin: 15px 0;
             }
-
-            .header-content {
-                position: relative;
-                justify-content: space-between; /* Logonun ve burger menü butonunun konumunu düzenleyin */
-            }
-
-            .nav-buttons {
-                display: flex;
-                align-items: center;
-            }
+    
+    /* Yeni eklenen: Mobil cihazlarda gezinme menüsünün doğru görüntülenmesi */
+    .header-content {
+        position: relative;
+    }
+    
+    .nav-buttons {
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+    }
         }
 
         @media (max-width: 768px) {
@@ -525,12 +527,9 @@
     <header>
         <div class="container header-content">
             <div class="logo">WERA</div>
-            <div class="nav-buttons">
-                <!-- Dark mode toggle butonunu kaldırıyoruz -->
-                <button class="nav-toggle" id="navToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav id="mainNav">
                 <ul>
                     <li><a href="#about">Hakkımızda</a></li>
@@ -774,27 +773,47 @@
             darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Aydınlık Mod';
         }
 
-        // Mobile Menu Toggle
+
         // Mobile Menu Toggle
         const navToggle = document.getElementById('navToggle');
         const mainNav = document.getElementById('mainNav');
-
-        navToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            navToggle.querySelector('i').classList.toggle('fa-bars');
-            navToggle.querySelector('i').classList.toggle('fa-times');
-        });
-
+    
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+        }
+    
         // Close menu when clicking on a link (mobile)
         const navLinks = document.querySelectorAll('nav ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    navToggle.querySelector('i').classList.add('fa-bars');
-                    navToggle.querySelector('i').classList.remove('fa-times');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
                 }
             });
+        });
+    
+        // Close menu when clicking outside (optional)
+        document.addEventListener('click', (e) => {
+            if (!mainNav.contains(e.target) && !navToggle.contains(e.target) && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            }
         });
     </script>
 </body>
