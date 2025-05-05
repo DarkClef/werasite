@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WERA Kafe - Mardin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d4ba8a;
+            --secondary-color: #5a5a5a;
+            --text-color: #e6e6e6;
+            --background-color: #121212;
+            --menu-bg: rgba(58, 50, 38, 0.6);
+            --section-bg: #1e1e1e;
+            --section-border: 1px solid #333;
+            --footer-bg: #0f0f0f;
+            --footer-text: #d4ba8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: 'Brush Script MT', cursive;
+            letter-spacing: 2px;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .dark-mode-toggle i {
+            margin-right: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+        }
+
+        .hero {
+            height: 500px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/77/a4/21/77a4214f779d48148e7b0eb31d003a5e.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-family: 'Brush Script MT', cursive;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #121212 ;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .about-section {
+            background-color: var(--section-bg);
+            padding: 60px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+            border: var(--section-border);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .menu-section {
+            background-color: var(--section-bg);
+            padding: 60px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+            border: var(--section-border);
+            position: relative;
+        }
+
+        .menu-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.pinimg.com/originals/7d/65/d2/7d65d2f72631ef76e5fa01f8bb561389.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            border-radius: 15px;
+            z-index: 0;
+        }
+
+        .menu-container {
+            display: flex;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-column {
+            flex: 1;
+            background-color: var(--menu-bg);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-category {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(230, 213, 184, 0.3);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .contact-section {
+            background-color: var(--section-bg);
+            padding: 60px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: var(--section-border);
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--text-color);
+            line-height: 1.6;
+            text-decoration: none;
+        }
+
+        .contact-text a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-map {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-button i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content, .contact-container, .footer-container {
+                flex-direction: column;
+            }
+
+            .menu-container {
+                flex-direction: column;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--secondary-color);
+                padding: 20px;
+                transition: 0.3s;
+                z-index: 999;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .header-content {
+                position: relative;
+                justify-content: space-between; /* Logonun ve burger menü butonunun konumunu düzenleyin */
+            }
+
+            .nav-buttons {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-section, .menu-section, .contact-section {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">WERA</div>
+            <div class="nav-buttons">
+                <!-- Dark mode toggle butonunu kaldırıyoruz -->
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#menu">Menü</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Wera Kafe</h1>
+            <p>Mardin'in kalbinde enfes içecekler ve keyifli anlar sizi bekliyor.</p>
+            <a href="#contact" class="btn">Rezervasyon Yap</a>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="about" class="about-section">
+            <h2 class="section-title">Hakkımızda</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://i.pinimg.com/originals/39/f4/00/39f400142ef4eb17e7d7834d95f3e818.jpg" alt="Wera Kafe İç Mekan">
+                </div>
+                <div class="about-text">
+                    <h3>Mardin'in Eşsiz Atmosferinde Bir Mola</h3>
+                    <p>Wera Kafe, Mardin'in tarihi dokusundan ilham alarak tasarlanmış, sıcak ve samimi bir ortamda misafirlerine hizmet vermektedir. Kahve tutkunları için özenle seçilmiş kahve çeşitleri, geleneksel lezzetler ve modern içeceklerle dolu menümüz ile her damak zevkine hitap ediyoruz.</p>
+                    <p>Yenikent mahallesinde konumlanan kafemiz, hem günlük kahve molanız, hem arkadaş buluşmalarınız, hem de özel etkinlikleriniz için ideal bir mekan sunuyor. Wera'da her fincan kahve, bir hikâye anlatır ve her ziyaret, unutulmaz bir anıya dönüşür.</p>
+                    <p>Sizleri de bu keyifli atmosferde ağırlamaktan mutluluk duyarız.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu-section">
+            <div class="menu-bg"></div>
+            <h2 class="section-title">Menümüz</h2>
+            <div class="menu-container">
+                <div class="menu-column">
+                    <h3 class="menu-category">SICAK İÇECEKLER</h3>
+                    <div class="menu-item">
+                        <span class="menu-item-name">TÜRK KAHVESİ</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">MENENGİÇ</span>
+                        <span class="menu-item-price">70₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">DİBEK KAHVESİ</span>
+                        <span class="menu-item-price">65₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">SICAK ÇİKOLATA</span>
+                        <span class="menu-item-price">90₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">SALEP</span>
+                        <span class="menu-item-price">80₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">ÇAY</span>
+                        <span class="menu-item-price">15₺</span>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-category">SOĞUK İÇECEKLER</h3>
+                    <div class="menu-item">
+                        <span class="menu-item-name">KÖPÜK ŞELALESİ</span>
+                        <span class="menu-item-price">100₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">ATOM</span>
+                        <span class="menu-item-price">90₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">KOLA</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">FANTA</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">SPRİTE</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">GAZOZ</span>
+                        <span class="menu-item-price">40₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">MEYVE SUYU</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">ICE TEA</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-category">SOĞUK İÇECEKLER (DEVAM)</h3>
+                    <div class="menu-item">
+                        <span class="menu-item-name">REDBULL</span>
+                        <span class="menu-item-price">80₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">SADE SODA</span>
+                        <span class="menu-item-price">30₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">MEYVELİ SODA</span>
+                        <span class="menu-item-price">40₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">LİMONATA</span>
+                        <span class="menu-item-price">50₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">CHUR CHILL</span>
+                        <span class="menu-item-price">40₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">MILK SHAKE</span>
+                        <span class="menu-item-price">60₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">FROZEN</span>
+                        <span class="menu-item-price">70₺</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">SU</span>
+                        <span class="menu-item-price">15₺</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">İletişim</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Adres</h4>
+                            <p>Yenikent mahallesi 9132.sokak kaçmaz apartmanı 6 ab blok 10E Kızıltepe, Mardin</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telefon</h4>
+                            <p><a href="tel:05387979551">0538 797 95 51</a></p>
+                            <p><a href="tel:05347080463">0534 708 04 63</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 22:00</p>
+                            <p>Cumartesi - Pazar: 10:00 - 23:00</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/905387979551" class="whatsapp-button">
+                        <i class="fab fa-whatsapp"></i> WhatsApp ile İletişim
+                    </a>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12763.825719641548!2d40.57884413953248!3d37.18532338246427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x400a7e21517fb12f%3A0xdbbf3d92d5f6c67!2sYenikent%2C%20K%C4%B1z%C4%B1ltepe%2FMardin!5e0!3m2!1str!2str!4v1644842903200!5m2!1str!2str" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>WERA KAFE</h3>
+                    <p>Mardin'in eşsiz atmosferinde keyifli bir mola için sizleri bekliyoruz.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Hızlı Erişim</h3>
+                    <p><a href="#about" style="color: inherit; text-decoration: none;">Hakkımızda</a></p>
+                    <p><a href="#menu" style="color: inherit; text-decoration: none;">Menü</a></p>
+                    <p><a href="#contact" style="color: inherit; text-decoration: none;">İletişim</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Yenikent mahallesi, Kızıltepe, Mardin</p>
+                    <p><i class="fas fa-phone-alt"></i> 0538 797 95 51</p>
+                    <p><i class="fas fa-envelope"></i> info@werakafe.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 WERA Kafe. Tüm Hakları Saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Aydınlık Mod';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Karanlık Mod';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Aydınlık Mod';
+        }
+
+        // Mobile Menu Toggle
+        // Mobile Menu Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            navToggle.querySelector('i').classList.toggle('fa-bars');
+            navToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close menu when clicking on a link (mobile)
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    navToggle.querySelector('i').classList.add('fa-bars');
+                    navToggle.querySelector('i').classList.remove('fa-times');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
