@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WERA Kafe - Mardin</title>
+    <meta name="keywords" content="mardin, kafe, mardin kafe, kızıltepe kafe, waffle, kızıltepe, kızıltepe cafe, mardin kızıltepe kafe">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -109,7 +110,7 @@
 
         .hero {
             height: 500px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/77/a4/21/77a4214f779d48148e7b0eb31d003a5e.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.manzara.gen.tr/w1/Mardinde-sabah.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -236,7 +237,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://i.pinimg.com/originals/7d/65/d2/7d65d2f72631ef76e5fa01f8bb561389.jpg');
+            background-image: url('https://st.depositphotos.com/1077310/1209/i/450/depositphotos_12097125-stock-illustration-beautiful-food-and-drink-background.jpg');
             background-size: cover;
             background-position: center;
             opacity: 0.08;
@@ -270,10 +271,48 @@
 
         .menu-item {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            flex-direction: column;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 1px dashed rgba(230, 213, 184, 0.3);
+        }    
+        .menu-item-image {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.05);
+        }
+        
+        .menu-item-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-item-desc {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* Responsive düzeltmeler */
+        @media (max-width: 768px) {
+            .menu-item-image {
+                height: 120px;
+            }
         }
 
         .menu-item:last-child {
@@ -454,38 +493,40 @@
             }
 
             nav {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 80px);
-                background-color: var(--secondary-color);
-                padding: 20px;
-                transition: 0.3s;
-                z-index: 999;
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 80%;
+            height: calc(100vh - 80px);
+            background-color: var(--secondary-color);
+            padding: 20px;
+            transition: 0.3s;
+            z-index: 999;
+            overflow-y: auto; /* uzun menüler için kaydırma çubuğu ekler */
             }
-
+        
             nav.active {
                 left: 0;
             }
-
+        
             nav ul {
                 flex-direction: column;
             }
-
+        
             nav ul li {
                 margin: 15px 0;
             }
-
-            .header-content {
-                position: relative;
-                justify-content: space-between; /* Logonun ve burger menü butonunun konumunu düzenleyin */
-            }
-
-            .nav-buttons {
-                display: flex;
-                align-items: center;
-            }
+    
+    /* Yeni eklenen: Mobil cihazlarda gezinme menüsünün doğru görüntülenmesi */
+    .header-content {
+        position: relative;
+    }
+    
+    .nav-buttons {
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+    }
         }
 
         @media (max-width: 768px) {
@@ -525,12 +566,9 @@
     <header>
         <div class="container header-content">
             <div class="logo">WERA</div>
-            <div class="nav-buttons">
-                <!-- Dark mode toggle butonunu kaldırıyoruz -->
-                <button class="nav-toggle" id="navToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav id="mainNav">
                 <ul>
                     <li><a href="#about">Hakkımızda</a></li>
@@ -554,7 +592,7 @@
             <h2 class="section-title">Hakkımızda</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://i.pinimg.com/originals/39/f4/00/39f400142ef4eb17e7d7834d95f3e818.jpg" alt="Wera Kafe İç Mekan">
+                    <img src="https://img.goodfon.com/original/2200x1435/8/cc/mardin-turkey-authentic.jpg" alt="Wera Kafe İç Mekan">
                 </div>
                 <div class="about-text">
                     <h3>Mardin'in Eşsiz Atmosferinde Bir Mola</h3>
@@ -571,100 +609,329 @@
             <div class="menu-container">
                 <div class="menu-column">
                     <h3 class="menu-category">SICAK İÇECEKLER</h3>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">TÜRK KAHVESİ</span>
-                        <span class="menu-item-price">60₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://sakiproducts.com/cdn/shop/articles/What-is-Turkish-Coffee-Thumbnail_640x640.jpg" alt="Türk Kahvesi">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">TÜRK KAHVESİ</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
+                        <div class="menu-item-desc">Geleneksel yöntemle hazırlanan, köpüklü Türk kahvesi</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">MENENGİÇ</span>
-                        <span class="menu-item-price">70₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://www.hataykapinda.com/wp-content/uploads/2020/08/Menengic02-1-1200x1200-1.png" alt="Menengiç Kahvesi">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">MENENGİÇ KAHVESİ</span>
+                            <span class="menu-item-price">70₺</span>
+                        </div>
+                        <div class="menu-item-desc">Yabani fıstık ağacının meyvesinden yapılan özel kahve</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">DİBEK KAHVESİ</span>
-                        <span class="menu-item-price">65₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://image.hurimg.com/i/hurriyet/75/750x422/5b3f5a78537a000c4095506c.jpg" alt="Dibek Kahvesi">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">DİBEK KAHVESİ</span>
+                            <span class="menu-item-price">65₺</span>
+                        </div>
+                        <div class="menu-item-desc">Osmanlıdan günümüze taşınan geleneksel kahve</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">SICAK ÇİKOLATA</span>
-                        <span class="menu-item-price">90₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://www.mustakildukkan.com/cdn/shop/articles/fitsicakcikolata.jpg" alt="Sıcak Çikolata">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">SICAK ÇİKOLATA</span>
+                            <span class="menu-item-price">90₺</span>
+                        </div>
+                        <div class="menu-item-desc">Soğuk kış günlerinde içinizi ısıtacak Sıcak Çikolata</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">SALEP</span>
-                        <span class="menu-item-price">80₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://cdn.myikas.com/images/52036155-b163-4fc0-a730-34e056fc0d79/b83289bf-b70d-4196-8b5a-1f28878ed1ce/image_1080.jpg" alt="Salep">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">SALEP</span>
+                            <span class="menu-item-price">80₺</span>
+                        </div>
+                        <div class="menu-item-desc">Doğal iyileştirici Salep</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">ÇAY</span>
-                        <span class="menu-item-price">15₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://i.lezzet.com.tr/images-xxlarge-secondary/cayin-tarihcesi-ve-turkiyeye-gelisi-c812539d-a158-4205-b031-724dd2fe3530" alt="Çay">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">ÇAY</span>
+                            <span class="menu-item-price">15₺</span>
+                        </div>
+                        <div class="menu-item-desc">Bizim de vazgeçilmezimiz olan içinizi ısıtacak sıcacık Çay</div>
                     </div>
+
+                </div>
+                <div class="menu-column">
+                    <h3 class="menu-category">TATLILAR</h3>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.bobajoy.com.tr/data/tarif/QCae7Ih7dsisZgXM.png" alt="Waffle">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">WAFFLE</span>
+                            <span class="menu-item-price">150₺</span>
+                        </div>
+                        <div class="menu-item-desc">Taze meyveler, çikolata sosu ve krema ile servis edilir</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.cakeplanet.com.tr/images/product/limonlu-cheesecake_ZpGr.jpg" alt="Limonlu cheesecake">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">LİMONLU CHEESECAKE</span>
+                            <span class="menu-item-price">120₺</span>
+                        </div>
+                        <div class="menu-item-desc">Nefis limon aromalı, hafif ve kremsi cheesecake</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://pbs.twimg.com/media/EHULVGVWoAA10Dm.jpg" alt="Frambuazlı cheesecake">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">FRAMBUAZLI CHEESECAKE</span>
+                            <span class="menu-item-price">120₺</span>
+                        </div>
+                        <div class="menu-item-desc">Nefis frambuaz aromalı, hafif ve kremsi cheesecake</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://static.ticimax.cloud/46795/uploads/urunresimleri/buyuk/fistik-ruyasi-0f-866.jpg" alt="Fıstık rüyası">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">FISTIK RÜYASI</span>
+                            <span class="menu-item-price">120₺</span>
+                        </div>
+                        <div class="menu-item-desc">Nefis fıstık aromalı, rüyalar kadar güzel pasta</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://turkeyffg.com/wp-content/uploads/2021/01/LatteKareMonoPasta.jpg" alt="Kare Latte">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">KARE LATTE</span>
+                            <span class="menu-item-price">120₺</span>
+                        </div>
+                        <div class="menu-item-desc">Sütlü kahvenin pasta hali</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.hacibekirkunc.com/upload/tiramisu.jpg" alt="Tiramisu">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">TİRAMİSU</span>
+                            <span class="menu-item-price">120₺</span>
+                        </div>
+                        <div class="menu-item-desc">Tadı damağınızda kalacak bir güzellik</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.cakeplanet.com.tr/images/product/bitter-cikolatali-profiterollu_ky9S.jpg" alt="Profiterollü Pasta">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">PROFİTEROLLÜ PASTA</span>
+                            <span class="menu-item-price">120₺</span>
+                        </div>
+                        <div class="menu-item-desc">Çikolata , krema ve profiterolün muazzam birlikteliği</div>
+                    </div>
+
                 </div>
                 <div class="menu-column">
                     <h3 class="menu-category">SOĞUK İÇECEKLER</h3>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">KÖPÜK ŞELALESİ</span>
-                        <span class="menu-item-price">100₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://www.demirsaglik.com.tr/uploads/2022070715443527390.jpg" alt="Köpük Şelalesi">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">KÖPÜK ŞELALESİ</span>
+                            <span class="menu-item-price">100₺</span>
+                        </div>
+                        <div class="menu-item-desc">Yaz aylarının en etkilisi , kola ve dondurma</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">ATOM</span>
-                        <span class="menu-item-price">90₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://img-s1.onedio.com/id-62213574fd8a7c7841777bbe/rev-0/w-600/h-400/f-jpg/s-ad3f835d0ce727fc12c97e9f929ad8c7b8835092.jpg" alt="Atom">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">ATOM</span>
+                            <span class="menu-item-price">90₺</span>
+                        </div>
+                        <div class="menu-item-desc">Muz, bal, süt, tercihe bağlı eklemeler, Enerji ve mutluluk kaynağı</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">KOLA</span>
-                        <span class="menu-item-price">60₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://www.formsante.com.tr/wp-content/uploads/2021/06/buzlukta-dondurulmus-limonata-1.jpg" alt="Limonata">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">LİMONATA</span>
+                            <span class="menu-item-price">50₺</span>
+                        </div>
+                        <div class="menu-item-desc">Limon aromalı buz gibi bir içecek</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">FANTA</span>
-                        <span class="menu-item-price">60₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://www.sosy.co/wp-content/uploads/2020/07/67-Churchill-scaled.jpg" alt="Churchill">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">CHURCHİLL</span>
+                            <span class="menu-item-price">40₺</span>
+                        </div>
+                        <div class="menu-item-desc">Soda ve limonun birleşiminden ferahlatıcı ve sağlıklı bir içecek</div>
                     </div>
+
                     <div class="menu-item">
-                        <span class="menu-item-name">SPRİTE</span>
-                        <span class="menu-item-price">60₺</span>
+                        <div class="menu-item-image">
+                            <img src="https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/47607/uploads/urunresimleri/buyuk/fo-cilek-aromali-icecek-tozu-milk-shak-c81-44.jpg" alt="Milkshake">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">MİLKSHAKE</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
+                        <div class="menu-item-desc">İsteğe göre meyve aromalı sütlü soğuk içecek</div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">GAZOZ</span>
-                        <span class="menu-item-price">40₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://chocolate333.com/content/files/2021/9/PRODUCT-jySSgFKSOG.jpg" alt="Frozen">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">FROZEN</span>
+                            <span class="menu-item-price">70₺</span>
+                        </div>
+                        <div class="menu-item-desc">İsteğe göre meyve, kahve aromalı soğuk içecek</div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">MEYVE SUYU</span>
-                        <span class="menu-item-price">60₺</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">ICE TEA</span>
-                        <span class="menu-item-price">60₺</span>
-                    </div>
+
                 </div>
                 <div class="menu-column">
-                    <h3 class="menu-category">SOĞUK İÇECEKLER (DEVAM)</h3>
-                    <div class="menu-item">
-                        <span class="menu-item-name">REDBULL</span>
-                        <span class="menu-item-price">80₺</span>
+                    <h3 class="menu-category">KLASİK İÇECEKLER</h3>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://streetbar.fr/cdn/shop/files/A4CCCE35-B383-4F44-B010-393B6741E091.jpg" alt="Redbull">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">REDBULL</span>
+                            <span class="menu-item-price">80₺</span>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">SADE SODA</span>
-                        <span class="menu-item-price">30₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://i.nefisyemektarifleri.com/2023/09/26/soda-maden-suyu-kac-kalori-sade-limonlu-meyveli-soda-kalorileri.jpg" alt="Sade Soda">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">SADE SODA</span>
+                            <span class="menu-item-price">30₺</span>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">MEYVELİ SODA</span>
-                        <span class="menu-item-price">40₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://tuzubiberi2.tubatux.com/wp-content/uploads/2022/11/a-b-26.png" alt="Meyveli Soda">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">MEYVELİ SODA</span>
+                            <span class="menu-item-price">40₺</span>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">LİMONATA</span>
-                        <span class="menu-item-price">50₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://iasbh.tmgrup.com.tr/bd517c/0/0/0/0/0/0?u=http://i.sabah.com.tr/sb/galeri/saglik/bu-12-hastaligin-tek-sebebi-kola/4.jpg" alt="Kola">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">KOLA</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
+                        <div class="menu-item-desc">Tercihinize bağlı şekerli , şekersiz tadlarıyla</div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">CHUR CHILL</span>
-                        <span class="menu-item-price">40₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.shutterstock.com/shutterstock/videos/1035054359/thumb/5.jpg" alt="Fanta">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">FANTA</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">MILK SHAKE</span>
-                        <span class="menu-item-price">60₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://i5.walmartimages.com/asr/f7cb08cb-913e-474c-a5d6-02b86eef8dd4.05ab83243635c9408d19b4763725730b.jpeg" alt="Sprite">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">SPRİTE</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">FROZEN</span>
-                        <span class="menu-item-price">70₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://coolfooddude.com/wp-content/uploads/2021/08/p.124-Mixed-Berry-and-Jun_GAZOZ-scaled.jpg" alt="Gazoz">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">GAZOZ</span>
+                            <span class="menu-item-price">40₺</span>
+                        </div>
                     </div>
-                    <div class="menu-item">
-                        <span class="menu-item-name">SU</span>
-                        <span class="menu-item-price">15₺</span>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://refreshjuice.com.au/cdn/shop/articles/Featured_Image_1_1.png" alt="Meyve Suyu">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">MEYVE SUYU</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
                     </div>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://foodinlife.com/wp-content/uploads/2022/06/Adsiz-Tasarim-Kopyasi-6.jpg" alt="Soğuk Çay">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">SOĞUK ÇAY</span>
+                            <span class="menu-item-price">60₺</span>
+                        </div>
+                    </div>
+
+                     <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://www.okanhastanesi.com.tr/upload/icerik/mucizevi-guc-su_20200531122433.jpg" alt="Su">
+                        </div>
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">SU</span>
+                            <span class="menu-item-price">15₺</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -721,9 +988,7 @@
                     <h3>WERA KAFE</h3>
                     <p>Mardin'in eşsiz atmosferinde keyifli bir mola için sizleri bekliyoruz.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/weracafe47/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -736,11 +1001,12 @@
                     <h3>İletişim</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Yenikent mahallesi, Kızıltepe, Mardin</p>
                     <p><i class="fas fa-phone-alt"></i> 0538 797 95 51</p>
-                    <p><i class="fas fa-envelope"></i> info@werakafe.com</p>
+                    <p><i class="fas fa-phone-alt"></i> 0534 708 04 63</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 WERA Kafe. Tüm Hakları Saklıdır.</p>
+                <p>&copy; 2025 WERA Kafe. Tüm Hakları Saklıdır.</p>
+                <p>Menüdeki görseller temsilidir, menüdeki görsellerle sunulanlar arasında değişiklikler olabilir.</p>
             </div>
         </div>
     </footer>
@@ -769,27 +1035,47 @@
             darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Aydınlık Mod';
         }
 
-        // Mobile Menu Toggle
+
         // Mobile Menu Toggle
         const navToggle = document.getElementById('navToggle');
         const mainNav = document.getElementById('mainNav');
-
-        navToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            navToggle.querySelector('i').classList.toggle('fa-bars');
-            navToggle.querySelector('i').classList.toggle('fa-times');
-        });
-
+    
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+        }
+    
         // Close menu when clicking on a link (mobile)
         const navLinks = document.querySelectorAll('nav ul li a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    navToggle.querySelector('i').classList.add('fa-bars');
-                    navToggle.querySelector('i').classList.remove('fa-times');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
                 }
             });
+        });
+    
+        // Close menu when clicking outside (optional)
+        document.addEventListener('click', (e) => {
+            if (!mainNav.contains(e.target) && !navToggle.contains(e.target) && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            }
         });
     </script>
 </body>
